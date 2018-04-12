@@ -9,7 +9,7 @@ from werkzeug.routing import UnicodeConverter
 def _rule_to_js(rule):
     # we skip UnicodeConverter since it never needs custom JS code
     return {
-        'args': list(rule.arguments),
+        'args': sorted(rule.arguments),
         'defaults': rule.defaults,
         'trace': [{'isDynamic': is_dynamic, 'data': data}
                   for is_dynamic, data in rule._trace],
