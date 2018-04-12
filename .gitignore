@@ -1,0 +1,30 @@
+# Editors
+*.swp
+.idea/
+
+# Node
+node_modules/
+*.tgz
+
+# Python
+dist/
+.venv/
+__pycache__/
+*.py[co]
+*.egg-info
+*.whl
+build/
+.cache/
+.pytest_cache/
+htmlcov/
+.coverage
+
+# Babel
+lib/
+
+# Only apps should have lockfiles
+yarn.lock
+package-lock.json
+
+# Jest
+coverage/

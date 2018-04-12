@@ -1,0 +1,31 @@
+sudo: false
+
+matrix:
+  include:
+    - language: node_js
+      node_js:
+        - 9
+      script:
+        - npm run test
+        - npm run eslint
+
+    - language: python
+      python:
+        - 2.7
+        - 3.5
+        - 3.6
+      install:
+        - pip install -e flask-cli/
+        - pip install -r requirements.dev.txt
+      script:
+        - isort -rc --diff --check-only flask-cli/
+        - pycodestyle --max-line-length 100 flask-cli/
+        - pytest flask-cli/
+
+notifications:
+  email: false
+  irc:
+    channels:
+      - 'chat.freenode.net#indico'
+    use_notice: true
+    skip_join: true

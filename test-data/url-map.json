@@ -1,0 +1,239 @@
+{
+  "default_param": {
+    "endpoint": "default_param",
+    "rules": [
+      {
+        "args": [
+          "x"
+        ],
+        "converters": {},
+        "defaults": {
+          "x": "nope"
+        },
+        "trace": [
+          {
+            "data": "|",
+            "isDynamic": false
+          },
+          {
+            "data": "/def",
+            "isDynamic": false
+          },
+          {
+            "data": "/",
+            "isDynamic": false
+          }
+        ]
+      },
+      {
+        "args": [
+          "x"
+        ],
+        "converters": {},
+        "defaults": null,
+        "trace": [
+          {
+            "data": "|",
+            "isDynamic": false
+          },
+          {
+            "data": "/def/v/",
+            "isDynamic": false
+          },
+          {
+            "data": "x",
+            "isDynamic": true
+          }
+        ]
+      }
+    ]
+  },
+  "int_param": {
+    "endpoint": "int_param",
+    "rules": [
+      {
+        "args": [
+          "n"
+        ],
+        "converters": {
+          "n": "IntegerConverter"
+        },
+        "defaults": null,
+        "trace": [
+          {
+            "data": "|",
+            "isDynamic": false
+          },
+          {
+            "data": "/int/",
+            "isDynamic": false
+          },
+          {
+            "data": "n",
+            "isDynamic": true
+          }
+        ]
+      }
+    ]
+  },
+  "list_param": {
+    "endpoint": "list_param",
+    "rules": [
+      {
+        "args": [
+          "items"
+        ],
+        "converters": {
+          "items": "ListConverter"
+        },
+        "defaults": null,
+        "trace": [
+          {
+            "data": "|",
+            "isDynamic": false
+          },
+          {
+            "data": "/items/",
+            "isDynamic": false
+          },
+          {
+            "data": "items",
+            "isDynamic": true
+          }
+        ]
+      }
+    ]
+  },
+  "no_params": {
+    "endpoint": "no_params",
+    "rules": [
+      {
+        "args": [],
+        "converters": {},
+        "defaults": null,
+        "trace": [
+          {
+            "data": "|",
+            "isDynamic": false
+          },
+          {
+            "data": "/no",
+            "isDynamic": false
+          },
+          {
+            "data": "/",
+            "isDynamic": false
+          }
+        ]
+      }
+    ]
+  },
+  "optional_param": {
+    "endpoint": "optional_param",
+    "rules": [
+      {
+        "args": [
+          "x"
+        ],
+        "converters": {},
+        "defaults": null,
+        "trace": [
+          {
+            "data": "|",
+            "isDynamic": false
+          },
+          {
+            "data": "/opt/v/",
+            "isDynamic": false
+          },
+          {
+            "data": "x",
+            "isDynamic": true
+          }
+        ]
+      },
+      {
+        "args": [],
+        "converters": {},
+        "defaults": null,
+        "trace": [
+          {
+            "data": "|",
+            "isDynamic": false
+          },
+          {
+            "data": "/opt",
+            "isDynamic": false
+          },
+          {
+            "data": "/",
+            "isDynamic": false
+          }
+        ]
+      }
+    ]
+  },
+  "param": {
+    "endpoint": "param",
+    "rules": [
+      {
+        "args": [
+          "x"
+        ],
+        "converters": {},
+        "defaults": null,
+        "trace": [
+          {
+            "data": "|",
+            "isDynamic": false
+          },
+          {
+            "data": "/p/",
+            "isDynamic": false
+          },
+          {
+            "data": "x",
+            "isDynamic": true
+          }
+        ]
+      }
+    ]
+  },
+  "path_param": {
+    "endpoint": "path_param",
+    "rules": [
+      {
+        "args": [
+          "base",
+          "location"
+        ],
+        "converters": {
+          "location": "PathConverter"
+        },
+        "defaults": null,
+        "trace": [
+          {
+            "data": "|",
+            "isDynamic": false
+          },
+          {
+            "data": "/file/",
+            "isDynamic": false
+          },
+          {
+            "data": "base",
+            "isDynamic": true
+          },
+          {
+            "data": "/",
+            "isDynamic": false
+          },
+          {
+            "data": "location",
+            "isDynamic": true
+          }
+        ]
+      }
+    ]
+  }
+}

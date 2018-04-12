@@ -1,0 +1,4 @@
+isort
+pycodestyle
+pytest
+pytest-cov

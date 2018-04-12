@@ -1,0 +1,48 @@
+{
+  "name": "flask-urls",
+  "version": "0.0.1",
+  "description": "Provides a function to build Flask URLs on the client side.",
+  "main": "lib/build.js",
+  "scripts": {
+    "build": "rm -rf lib/ && babel src/ --out-dir lib/",
+    "prepare": "npm run build"
+  },
+  "repository": "github:indico/js-flask-urls",
+  "keywords": [
+    "flask",
+    "werkzeug",
+    "url",
+    "routing"
+  ],
+  "author": "Indico Team",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/indico/js-flask-urls/issues"
+  },
+  "homepage": "https://github.com/indico/js-flask-urls#readme",
+  "dependencies": {
+    "lodash": "^4.17.5",
+    "qs": "^6.5.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.0.0-beta.44",
+    "@babel/preset-env": "^7.0.0-beta.44"
+  },
+  "babel": {
+    "presets": [
+      [
+        "@babel/env",
+        {
+          "targets": {
+            "browsers": [
+              "last 2 versions",
+              "firefox esr",
+              "not ie<11",
+              "not ie_mob>0"
+            ]
+          }
+        }
+      ]
+    ]
+  }
+}

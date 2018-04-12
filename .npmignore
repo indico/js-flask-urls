@@ -1,0 +1,9 @@
+*.swp
+.*
+src/
+*.tgz
+coverage/
+tests/
+setup.py
+*.egg-info
+dist/

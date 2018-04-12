@@ -1,0 +1,158 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`babel plugin rewrites import using a custom base path: rewrites import using a custom base path 1`] = `
+"
+import noParams from 'flask-url:no_params';
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _buildFlaskURL from \\"flask-urls\\";
+
+/* flask url builder for 'no_params' */
+const noParams = _buildFlaskURL.bind(null, {
+  endpoint: \\"no_params\\",
+  rules: [{
+    args: [],
+    converters: {},
+    defaults: null,
+    trace: [{
+      data: \\"|\\",
+      isDynamic: false
+    }, {
+      data: \\"/no\\",
+      isDynamic: false
+    }, {
+      data: \\"/\\",
+      isDynamic: false
+    }]
+  }]
+}, \\"myapp/\\");
+"
+`;
+
+exports[`babel plugin rewrites import using a custom builder import location: rewrites import using a custom builder import location 1`] = `
+"
+import noParams from 'flask-url:no_params';
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _buildFlaskURL from \\"myapp/flask-urls\\";
+
+/* flask url builder for 'no_params' */
+const noParams = _buildFlaskURL.bind(null, {
+  endpoint: \\"no_params\\",
+  rules: [{
+    args: [],
+    converters: {},
+    defaults: null,
+    trace: [{
+      data: \\"|\\",
+      isDynamic: false
+    }, {
+      data: \\"/no\\",
+      isDynamic: false
+    }, {
+      data: \\"/\\",
+      isDynamic: false
+    }]
+  }]
+}, \\"\\");
+"
+`;
+
+exports[`babel plugin rewrites the import: rewrites the import 1`] = `
+"
+import noParams from 'flask-url:no_params';
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _buildFlaskURL from \\"flask-urls\\";
+
+/* flask url builder for 'no_params' */
+const noParams = _buildFlaskURL.bind(null, {
+  endpoint: \\"no_params\\",
+  rules: [{
+    args: [],
+    converters: {},
+    defaults: null,
+    trace: [{
+      data: \\"|\\",
+      isDynamic: false
+    }, {
+      data: \\"/no\\",
+      isDynamic: false
+    }, {
+      data: \\"/\\",
+      isDynamic: false
+    }]
+  }]
+}, \\"\\");
+"
+`;
+
+exports[`babel plugin rewrites the imports and adds builder import only once: rewrites the imports and adds builder import only once 1`] = `
+"
+import noParams from 'flask-url:no_params';
+import defaultParam from 'flask-url:default_param';
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _buildFlaskURL from \\"flask-urls\\";
+
+/* flask url builder for 'no_params' */
+const noParams = _buildFlaskURL.bind(null, {
+  endpoint: \\"no_params\\",
+  rules: [{
+    args: [],
+    converters: {},
+    defaults: null,
+    trace: [{
+      data: \\"|\\",
+      isDynamic: false
+    }, {
+      data: \\"/no\\",
+      isDynamic: false
+    }, {
+      data: \\"/\\",
+      isDynamic: false
+    }]
+  }]
+}, \\"\\");
+
+/* flask url builder for 'default_param' */
+const defaultParam = _buildFlaskURL.bind(null, {
+  endpoint: \\"default_param\\",
+  rules: [{
+    args: [\\"x\\"],
+    converters: {},
+    defaults: {
+      x: \\"nope\\"
+    },
+    trace: [{
+      data: \\"|\\",
+      isDynamic: false
+    }, {
+      data: \\"/def\\",
+      isDynamic: false
+    }, {
+      data: \\"/\\",
+      isDynamic: false
+    }]
+  }, {
+    args: [\\"x\\"],
+    converters: {},
+    defaults: null,
+    trace: [{
+      data: \\"|\\",
+      isDynamic: false
+    }, {
+      data: \\"/def/v/\\",
+      isDynamic: false
+    }, {
+      data: \\"x\\",
+      isDynamic: true
+    }]
+  }]
+}, \\"\\");
+"
+`;
