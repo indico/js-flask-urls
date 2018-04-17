@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Home</h2>
+    <p>
+        <label>
+            Name
+            <input id="name" placeholder="Enter your name (or leave empty)" size="50" autocomplete="off">
+        </label>
+        <button id="reset" type="button">Reset</button>
+    </p>
+    <p>
+        <label>
+            URL
+            <input id="output" size="100" readonly>
+        </label>
+        <button id="go" type="button">Go</button>
+    </p>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{{ url_for('static', filename='dist/app.bundle.js') }}"></script>
+
+{% endblock %}

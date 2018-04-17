@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Profile</h2>
+    <p>
+        {% if name %}
+            Viewing profile of <strong>{{ name }}</strong>
+        {% else %}
+            Viewing your own profile
+        {% endif %}
+    </p>
+
+    <p><a href="{{ url_for('index') }}">Back</a></p>
+{% endblock %}
