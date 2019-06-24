@@ -103,7 +103,7 @@ const fixParams = (endpoint, params) => {
 
 
 const buildFlaskURL = (template, base = '', params = {}, fragment = '', converters = {}) => {
-    converters = Object.assign({}, builtinConverters, converters);
+    converters = {...builtinConverters, ...converters};
     let qsParams, url;
     params = fixParams(template.endpoint, params);
     const args = splitObj(params);

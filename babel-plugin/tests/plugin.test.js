@@ -47,7 +47,7 @@ pluginTester({
                 import test from 'flask-url:no_params';
                 import test from 'flask-url:default_param';
             `,
-            error: /Duplicate declaration "test"/,
+            error: /Identifier 'test' has already been declared/,
         },
         'fails with invalid endpoint': {
             code: "import test from 'flask-url:test';",

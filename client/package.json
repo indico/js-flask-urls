@@ -5,7 +5,9 @@
   "main": "lib/build.js",
   "scripts": {
     "build": "rm -rf lib/ && babel src/ --out-dir lib/",
-    "prepare": "npm run build"
+    "prepare": "npm run build",
+    "eslint": "eslint src/",
+    "test": "jest --coverage"
   },
   "repository": "github:indico/js-flask-urls",
   "keywords": [
@@ -21,17 +23,26 @@
   },
   "homepage": "https://github.com/indico/js-flask-urls#readme",
   "dependencies": {
-    "lodash": "^4.17.5",
-    "qs": "^6.5.1"
+    "lodash": "^4.17.11",
+    "qs": "^6.7.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.0.0-beta.44",
-    "@babel/preset-env": "^7.0.0-beta.44"
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "babel-eslint": "^10.0.2",
+    "babel-jest": "^24.8.0",
+    "eslint": "^6.0.0",
+    "eslint-config-indico": "^1.1.0",
+    "eslint-plugin-babel": "^5.3.0",
+    "eslint-plugin-import": "^2.18.0",
+    "eslint-plugin-jest": "^22.7.1",
+    "jest": "^24.8.0"
   },
   "babel": {
     "presets": [
       [
-        "@babel/env",
+        "@babel/preset-env",
         {
           "targets": {
             "browsers": [
