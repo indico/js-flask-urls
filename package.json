@@ -18,8 +18,8 @@
     "lerna": "^3.15.0"
   },
   "dependencies": {
-    "babel-plugin-flask-urls": "file:packages/babel-plugin",
-    "flask-urls": "file:packages/client"
+    "babel-plugin-flask-urls": "file:packages/babel-plugin-flask-urls",
+    "flask-urls": "file:packages/flask-urls"
   },
   "jest": {
     "transform": {
@@ -32,8 +32,8 @@
     "testRegex": "./(packages/[^/]+/)?tests/.+\\.js$",
     "testEnvironment": "node",
     "moduleNameMapper": {
-      "^babel-plugin-flask-urls$": "<rootDir>/packages/babel-plugin/src/plugin.js",
-      "^flask-urls$": "<rootDir>/packages/client/src/build.js"
+      "^babel-plugin-flask-urls$": "<rootDir>/packages/babel-plugin-flask-urls/src/plugin.js",
+      "^flask-urls$": "<rootDir>/packages/flask-urls/src/build.js"
     }
   },
   "scripts": {
