@@ -26,8 +26,13 @@
       "^.+\\.js$": "../../babel-jest"
     }
   },
+  "babel": {
+    "extends": "../../.babelrc"
+  },
   "scripts": {
     "eslint": "eslint src/",
-    "test": "jest"
+    "test": "jest",
+    "build": "rm -rf lib/ && ../../node_modules/.bin/babel src/ --out-dir lib/",
+    "prepare": "npm run build"
   }
 }
