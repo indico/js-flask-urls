@@ -1,13 +1,24 @@
-sudo: false
+dist: xenial
 
 matrix:
   include:
-    - language: node_js
-      node_js: 9
+    - &js
+      name: JS - Babel Plugin
+      language: node_js
+      node_js: '9'
+      install:
+        - cd babel-plugin
+        - npm install
       script:
         - npm run test
         - npm run eslint
+    - <<: *js
+      name: JS - URL Builder
+      install:
+        - cd client
+        - npm install
     - &py
+      name: Python 2.7 - Flask Plugin
       language: python
       python: 2.7
       install:
@@ -18,10 +29,13 @@ matrix:
         - pycodestyle --max-line-length 100 flask-cli/
         - pytest flask-cli/
     - <<: *py
+      name: Python 3.5 - Flask Plugin
       python: 3.5
     - <<: *py
+      name: Python 3.6 - Flask Plugin
       python: 3.6
     - <<: *py
+      name: Python 3.7 - Flask Plugin
       python: 3.7
 
 notifications:
