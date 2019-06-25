@@ -2,5 +2,14 @@
   "packages": [
     "packages/*"
   ],
+  "command": {
+    "version": {
+      "allowBranch": "master",
+      "message": "Release new version",
+      "push": false,
+      "signGitTag": true
+    }
+  },
+  "ignoreChanges": ["**/tests/**"],
   "version": "0.0.1"
 }
