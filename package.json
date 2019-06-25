@@ -38,6 +38,7 @@
   },
   "scripts": {
     "eslint": "eslint packages/*/src/",
-    "test": "jest"
+    "test": "jest",
+    "check": "jest && eslint packages/*/src/"
   }
 }
