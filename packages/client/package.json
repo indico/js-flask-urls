@@ -1,0 +1,23 @@
+{
+  "name": "flask-urls",
+  "version": "0.0.1",
+  "description": "Provides a function to build Flask URLs on the client side.",
+  "main": "lib/build.js",
+  "repository": "github:indico/js-flask-urls",
+  "keywords": [
+    "flask",
+    "werkzeug",
+    "url",
+    "routing"
+  ],
+  "author": "Indico Team",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/indico/js-flask-urls/issues"
+  },
+  "homepage": "https://github.com/indico/js-flask-urls#readme",
+  "dependencies": {
+    "lodash": "^4.17.11",
+    "qs": "^6.7.0"
+  }
+}

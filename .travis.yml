@@ -2,21 +2,12 @@ dist: xenial
 
 matrix:
   include:
-    - &js
-      name: JS - Babel Plugin
+    - name: JS packages
       language: node_js
       node_js: '9'
-      install:
-        - cd babel-plugin
-        - npm install
       script:
         - npm run test
         - npm run eslint
-    - <<: *js
-      name: JS - URL Builder
-      install:
-        - cd client
-        - npm install
     - &py
       name: Python 2.7 - Flask Plugin
       language: python

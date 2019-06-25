@@ -1,5 +1,5 @@
 import pluginTester from 'babel-plugin-tester';
-import urlMap from '../../test-data/url-map';
+import urlMap from '../../../test-data/url-map';
 import flaskURLPlugin from '../src/plugin';
 
 

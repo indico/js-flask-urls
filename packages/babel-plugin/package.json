@@ -1,0 +1,24 @@
+{
+  "name": "babel-plugin-flask-urls",
+  "version": "0.0.1",
+  "description": "Adds support for importing Flask routing rules to generate URLs client-side.",
+  "main": "lib/plugin.js",
+  "repository": "github:indico/js-flask-urls",
+  "keywords": [
+    "flask",
+    "werkzeug",
+    "babel",
+    "url",
+    "routing"
+  ],
+  "author": "Indico Team",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/indico/js-flask-urls/issues"
+  },
+  "homepage": "https://github.com/indico/js-flask-urls#readme",
+  "peerDependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/helper-module-imports": "^7.0.0"
+  }
+}

@@ -28,3 +28,6 @@ package-lock.json
 
 # Jest
 coverage/
+
+# Lerna
+lerna-debug.log

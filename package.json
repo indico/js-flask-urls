@@ -1,0 +1,43 @@
+{
+  "name": "root",
+  "private": true,
+  "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.5",
+    "@babel/helper-module-imports": "^7.0.0",
+    "@babel/preset-env": "^7.4.5",
+    "babel-eslint": "^10.0.2",
+    "babel-jest": "^24.8.0",
+    "babel-plugin-tester": "^6.4.0",
+    "eslint": "^6.0.1",
+    "eslint-config-indico": "^1.1.0",
+    "eslint-plugin-babel": "^5.3.0",
+    "eslint-plugin-import": "^2.18.0",
+    "eslint-plugin-jest": "^22.7.1",
+    "jest": "^24.8.0",
+    "lerna": "^3.15.0"
+  },
+  "dependencies": {
+    "babel-plugin-flask-urls": "file:packages/babel-plugin",
+    "flask-urls": "file:packages/client"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.js$": "./babel-jest"
+    },
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "packages/*/src/**"
+    ],
+    "testRegex": "./(packages/[^/]+/)?tests/.+\\.js$",
+    "testEnvironment": "node",
+    "moduleNameMapper": {
+      "^babel-plugin-flask-urls$": "<rootDir>/packages/babel-plugin/src/plugin.js",
+      "^flask-urls$": "<rootDir>/packages/client/src/build.js"
+    }
+  },
+  "scripts": {
+    "eslint": "eslint packages/*/src/",
+    "test": "jest"
+  }
+}

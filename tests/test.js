@@ -1,6 +1,6 @@
 import {transform} from '@babel/core';
-import flaskURLPlugin from '../babel-plugin/src/plugin';
-import buildFlaskURL from '../client/src/build';
+import flaskURLPlugin from 'babel-plugin-flask-urls';
+import buildFlaskURL from 'flask-urls';
 import urlMap from '../test-data/url-map';
 
 

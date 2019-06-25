@@ -1,6 +1,6 @@
 import isArray from 'lodash/isArray';
 import buildFlaskURL from '../src/build';
-import urlMap from '../../test-data/url-map';
+import urlMap from '../../../test-data/url-map';
 
 
 const customConverters = {
