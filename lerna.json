@@ -8,6 +8,9 @@
       "message": "Release new version",
       "push": false,
       "signGitTag": true
+    },
+    "publish": {
+      "push": false
     }
   },
   "ignoreChanges": ["**/tests/**"],
