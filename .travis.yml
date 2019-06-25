@@ -21,6 +21,8 @@ matrix:
       python: 3.5
     - <<: *py
       python: 3.6
+    - <<: *py
+      python: 3.7
 
 notifications:
   email: false
