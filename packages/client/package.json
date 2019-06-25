@@ -19,5 +19,14 @@
   "dependencies": {
     "lodash": "^4.17.11",
     "qs": "^6.7.0"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.js$": "../../babel-jest"
+    }
+  },
+  "scripts": {
+    "eslint": "eslint src/",
+    "test": "jest"
   }
 }

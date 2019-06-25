@@ -20,5 +20,14 @@
   "peerDependencies": {
     "@babel/core": "^7.4.5",
     "@babel/helper-module-imports": "^7.0.0"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.js$": "../../babel-jest"
+    }
+  },
+  "scripts": {
+    "eslint": "eslint src/",
+    "test": "jest"
   }
 }
