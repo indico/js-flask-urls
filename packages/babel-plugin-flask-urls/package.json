@@ -30,8 +30,8 @@
     "extends": "../../.babelrc"
   },
   "scripts": {
-    "eslint": "eslint src/",
-    "test": "jest",
+    "eslint": "../../node_modules/.bin/eslint .",
+    "test": "../../node_modules/.bin/jest",
     "build": "rm -rf lib/ && ../../node_modules/.bin/babel src/ --out-dir lib/",
     "prepare": "npm run build"
   }
