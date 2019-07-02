@@ -10,12 +10,15 @@
     "babel-jest": "^24.8.0",
     "babel-plugin-tester": "^6.4.0",
     "eslint": "^6.0.1",
-    "eslint-config-indico": "^1.1.0",
+    "eslint-config-indico": "^1.2.0",
+    "eslint-config-prettier": "^6.0.0",
     "eslint-plugin-babel": "^5.3.0",
     "eslint-plugin-import": "^2.18.0",
     "eslint-plugin-jest": "^22.7.1",
+    "eslint-plugin-prettier": "^3.1.0",
     "jest": "^24.8.0",
-    "lerna": "^3.15.0"
+    "lerna": "^3.15.0",
+    "prettier": "^1.18.2"
   },
   "dependencies": {
     "babel-plugin-flask-urls": "file:packages/babel-plugin-flask-urls",
@@ -37,8 +40,8 @@
     }
   },
   "scripts": {
-    "eslint": "eslint packages/*/src/",
+    "eslint": "eslint packages/ tests/",
     "test": "jest",
-    "check": "jest && eslint packages/*/src/"
+    "check": "jest && eslint packages/ tests/"
   }
 }
