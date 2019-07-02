@@ -8,6 +8,7 @@
     "@babel/preset-env": "^7.4.5",
     "babel-eslint": "^10.0.2",
     "babel-jest": "^24.8.0",
+    "babel-plugin-macros": "^2.6.1",
     "babel-plugin-tester": "^6.4.0",
     "eslint": "^6.0.1",
     "eslint-config-indico": "^1.2.0",
@@ -22,7 +23,8 @@
   },
   "dependencies": {
     "babel-plugin-flask-urls": "file:packages/babel-plugin-flask-urls",
-    "flask-urls": "file:packages/flask-urls"
+    "flask-urls": "file:packages/flask-urls",
+    "flask-urls.macro": "file:packages/flask-urls.macro"
   },
   "jest": {
     "transform": {
@@ -32,11 +34,12 @@
     "collectCoverageFrom": [
       "packages/*/src/**"
     ],
-    "testRegex": "./(packages/[^/]+/)?tests/.+\\.js$",
+    "testRegex": "./(packages/[^/]+/)?tests/.+\\.test\\.js$",
     "testEnvironment": "node",
     "moduleNameMapper": {
       "^babel-plugin-flask-urls$": "<rootDir>/packages/babel-plugin-flask-urls/src/plugin.js",
-      "^flask-urls$": "<rootDir>/packages/flask-urls/src/build.js"
+      "^flask-urls$": "<rootDir>/packages/flask-urls/src/build.js",
+      "^flask-urls\\.macro$": "<rootDir>/packages/flask-urls.macro/src/flask-urls.macro.js"
     }
   },
   "scripts": {

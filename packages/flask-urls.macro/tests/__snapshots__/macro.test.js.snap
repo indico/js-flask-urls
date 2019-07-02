@@ -1,0 +1,187 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`babel macro creates builder import only once: creates builder import only once 1`] = `
+"
+import flask from '../src/flask-urls.macro';
+const noParamsURL = flask\`no_params\`;
+const defaultParam = flask\`default_param\`;
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _buildFlaskURL from \\"flask-urls\\";
+
+const noParamsURL = _buildFlaskURL.bind(null, {
+  endpoint: \\"no_params\\",
+  rules: [{
+    args: [],
+    converters: {},
+    defaults: null,
+    trace: [{
+      data: \\"|\\",
+      isDynamic: false
+    }, {
+      data: \\"/no\\",
+      isDynamic: false
+    }, {
+      data: \\"/\\",
+      isDynamic: false
+    }]
+  }]
+}, \\"\\");
+
+const defaultParam = _buildFlaskURL.bind(null, {
+  endpoint: \\"default_param\\",
+  rules: [{
+    args: [\\"x\\"],
+    converters: {},
+    defaults: {
+      x: \\"nope\\"
+    },
+    trace: [{
+      data: \\"|\\",
+      isDynamic: false
+    }, {
+      data: \\"/def\\",
+      isDynamic: false
+    }, {
+      data: \\"/\\",
+      isDynamic: false
+    }]
+  }, {
+    args: [\\"x\\"],
+    converters: {},
+    defaults: null,
+    trace: [{
+      data: \\"|\\",
+      isDynamic: false
+    }, {
+      data: \\"/def/v/\\",
+      isDynamic: false
+    }, {
+      data: \\"x\\",
+      isDynamic: true
+    }]
+  }]
+}, \\"\\");
+"
+`;
+
+exports[`babel macro generates the function call: generates the function call 1`] = `
+"
+import flask from '../src/flask-urls.macro';
+const noParamsURL = flask\`no_params\`;
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _buildFlaskURL from \\"flask-urls\\";
+
+const noParamsURL = _buildFlaskURL.bind(null, {
+  endpoint: \\"no_params\\",
+  rules: [{
+    args: [],
+    converters: {},
+    defaults: null,
+    trace: [{
+      data: \\"|\\",
+      isDynamic: false
+    }, {
+      data: \\"/no\\",
+      isDynamic: false
+    }, {
+      data: \\"/\\",
+      isDynamic: false
+    }]
+  }]
+}, \\"\\");
+"
+`;
+
+exports[`babel macro rewrites import using a custom base path: rewrites import using a custom base path 1`] = `
+"
+import flask from '../src/flask-urls.macro';
+const noParamsURL = flask\`no_params\`;
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _buildFlaskURL from \\"flask-urls\\";
+
+const noParamsURL = _buildFlaskURL.bind(null, {
+  endpoint: \\"no_params\\",
+  rules: [{
+    args: [],
+    converters: {},
+    defaults: null,
+    trace: [{
+      data: \\"|\\",
+      isDynamic: false
+    }, {
+      data: \\"/no\\",
+      isDynamic: false
+    }, {
+      data: \\"/\\",
+      isDynamic: false
+    }]
+  }]
+}, \\"myapp/\\");
+"
+`;
+
+exports[`babel macro rewrites import using a custom builder import location: rewrites import using a custom builder import location 1`] = `
+"
+import flask from '../src/flask-urls.macro';
+const noParamsURL = flask\`no_params\`;
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _buildFlaskURL from \\"myapp/flask-urls\\";
+
+const noParamsURL = _buildFlaskURL.bind(null, {
+  endpoint: \\"no_params\\",
+  rules: [{
+    args: [],
+    converters: {},
+    defaults: null,
+    trace: [{
+      data: \\"|\\",
+      isDynamic: false
+    }, {
+      data: \\"/no\\",
+      isDynamic: false
+    }, {
+      data: \\"/\\",
+      isDynamic: false
+    }]
+  }]
+}, \\"\\");
+"
+`;
+
+exports[`babel macro works with a custom import name: works with a custom import name 1`] = `
+"
+import kittens from '../src/flask-urls.macro';
+const noParamsURL = kittens\`no_params\`;
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import _buildFlaskURL from \\"flask-urls\\";
+
+const noParamsURL = _buildFlaskURL.bind(null, {
+  endpoint: \\"no_params\\",
+  rules: [{
+    args: [],
+    converters: {},
+    defaults: null,
+    trace: [{
+      data: \\"|\\",
+      isDynamic: false
+    }, {
+      data: \\"/no\\",
+      isDynamic: false
+    }, {
+      data: \\"/\\",
+      isDynamic: false
+    }]
+  }]
+}, \\"\\");
+"
+`;

@@ -1,0 +1,41 @@
+{
+  "name": "flask-urls.macro",
+  "version": "0.0.0",
+  "description": "Provides a babel macro for building Flask URLs client-side.",
+  "main": "lib/flask-urls.macro.js",
+  "repository": "github:indico/js-flask-urls",
+  "keywords": [
+    "babel-plugin-macros",
+    "flask",
+    "werkzeug",
+    "babel",
+    "url",
+    "routing"
+  ],
+  "author": "Indico Team",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/indico/js-flask-urls/issues"
+  },
+  "homepage": "https://github.com/indico/js-flask-urls#readme",
+  "peerDependencies": {
+    "babel-plugin-macros": "^2.6.1"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.js$": "../../babel-jest"
+    }
+  },
+  "babel": {
+    "extends": "../../.babelrc"
+  },
+  "scripts": {
+    "eslint": "../../node_modules/.bin/eslint .",
+    "test": "../../node_modules/.bin/jest",
+    "build": "rm -rf lib/ && ../../node_modules/.bin/babel src/ --out-dir lib/",
+    "prepare": "npm run build"
+  },
+  "dependencies": {
+    "@babel/helper-module-imports": "^7.0.0"
+  }
+}
