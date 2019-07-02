@@ -6,6 +6,7 @@ matrix:
       language: node_js
       node_js: '9'
       script:
+        - npm run build
         - npm run test
         - npm run eslint
     - &py
