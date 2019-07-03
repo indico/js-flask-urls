@@ -41,8 +41,8 @@
   },
   "scripts": {
     "build": "lerna run build",
-    "eslint": "eslint packages/ tests/",
+    "eslint": "eslint .",
     "test": "jest",
-    "check": "jest && eslint packages/ tests/"
+    "check": "jest && eslint ."
   }
 }

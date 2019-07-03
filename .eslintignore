@@ -1,2 +1,5 @@
+.venv/
 lib/
 node_modules/
+example/static/dist/
+coverage/
