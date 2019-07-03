@@ -1,0 +1,10 @@
+.Demo-url {
+  font-family: monospace;
+  color: #61dafb;
+}
+
+.Demo-field {
+  background-color: #282c34;
+  border: 1px solid #61dafb;
+  color: #61dafb;
+}

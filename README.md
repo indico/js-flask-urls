@@ -1,7 +1,9 @@
 # Flask URLs in JS - the clean way!
 
 I should really write something nicer here. Later. Or maybe you want to send a PR?
-For now, check out the `example` folder for a small example app showing how to use this!
+For now, check out the `example` and `react-example` folder for small example apps
+showing how to use this. The `react-example` uses the Babel macro which can be used
+with an unejected `create-react-app` setup.
 
 ## Releases
 
