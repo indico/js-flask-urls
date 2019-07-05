@@ -1,6 +1,6 @@
 {
   "name": "flask-urls.macro",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Provides a babel macro for building Flask URLs client-side.",
   "main": "lib/flask-urls.macro.js",
   "repository": "github:indico/js-flask-urls",
