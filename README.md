@@ -23,3 +23,9 @@ As a user of library, you can safely ignore this section. This is just for maint
 - `git tag -s flask-cli@x.y.z` to tag the release (with x.y.z being the new version)
 - `twine upload ...` to publish the wheel
 - `git push` the new commit and tags to the upstream repo (not your fork!)
+
+## Note
+
+In applying the MIT license, CERN does not waive the privileges and immunities
+granted to it by virtue of its status as an Intergovernmental Organization
+or submit itself to any jurisdiction.
