@@ -60,6 +60,36 @@ const noParams = _buildFlaskURL.bind(null, {
 "
 `;
 
+exports[`babel plugin rewrites the import in mock mode and adds builder import only once: rewrites the import in mock mode and adds builder import only once 1`] = `
+"
+import foo from 'flask-url:not_defined_1';
+import bar from 'flask-url:not_defined_2';
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import { mockFlaskURL as _mockFlaskURL } from \\"flask-urls\\";
+
+/* mocked flask url builder for 'not_defined_1' */
+const foo = _mockFlaskURL.bind(null, \\"not_defined_1\\");
+
+/* mocked flask url builder for 'not_defined_2' */
+const bar = _mockFlaskURL.bind(null, \\"not_defined_2\\");
+"
+`;
+
+exports[`babel plugin rewrites the import in mock mode: rewrites the import in mock mode 1`] = `
+"
+import foo from 'flask-url:foo_not_defined';
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import { mockFlaskURL as _mockFlaskURL } from \\"flask-urls\\";
+
+/* mocked flask url builder for 'foo_not_defined' */
+const foo = _mockFlaskURL.bind(null, \\"foo_not_defined\\");
+"
+`;
+
 exports[`babel plugin rewrites the import: rewrites the import 1`] = `
 "
 import noParams from 'flask-url:no_params';

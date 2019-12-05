@@ -1,10 +1,15 @@
-import {addDefault as addDefaultImport} from '@babel/helper-module-imports';
+import {
+  addDefault as addDefaultImport,
+  addNamed as addNamedImport,
+} from '@babel/helper-module-imports';
 
 const flaskURLPlugin = ({types: t, template}, opts = {}) => {
   const buildFunc = template.expression('FUNC.bind(null, RULE, BASE)');
+  const buildFuncMock = template.expression('FUNC.bind(null, ENDPOINT)');
   const importPrefix = opts.importPrefix || 'flask-url';
   const builderImportLocation = opts.builderImportLocation || 'flask-urls';
   const urlMap = opts.urlMap || {};
+  const mock = opts.mock;
   const basePath = opts.basePath || '';
   const importRegex = new RegExp(`^${importPrefix}:(.+)$`);
 
@@ -31,30 +36,58 @@ const flaskURLPlugin = ({types: t, template}, opts = {}) => {
               .buildCodeFrameError(`${importPrefix} imports must use a default import`);
           }
           const importName = path.node.specifiers[0].local.name;
-          const data = urlMap[endpoint];
-          if (!data) {
-            throw path
-              .get('source')
-              .buildCodeFrameError(`${importPrefix} imports must reference a valid flask endpoint`);
-          }
 
           let builderFuncId = this.builderFuncId;
           if (builderFuncId) {
             builderFuncId = t.cloneDeep(builderFuncId);
-          } else {
-            builderFuncId = this.builderFuncId = addDefaultImport(path, builderImportLocation, {
-              nameHint: 'buildFlaskURL',
-            });
           }
 
-          const variable = t.variableDeclarator(
-            t.identifier(importName),
-            buildFunc({
-              FUNC: builderFuncId,
-              RULE: t.valueToNode(data),
-              BASE: t.stringLiteral(basePath),
-            })
-          );
+          let variable;
+          if (mock) {
+            if (!builderFuncId) {
+              builderFuncId = this.builderFuncId = addNamedImport(
+                path,
+                'mockFlaskURL',
+                builderImportLocation,
+                {
+                  nameHint: 'mockFlaskURL',
+                }
+              );
+            }
+
+            variable = t.variableDeclarator(
+              t.identifier(importName),
+              buildFuncMock({
+                FUNC: builderFuncId,
+                ENDPOINT: t.stringLiteral(endpoint),
+              })
+            );
+          } else {
+            const data = urlMap[endpoint];
+            if (!data) {
+              throw path
+                .get('source')
+                .buildCodeFrameError(
+                  `${importPrefix} imports must reference a valid flask endpoint`
+                );
+            }
+
+            if (!builderFuncId) {
+              builderFuncId = this.builderFuncId = addDefaultImport(path, builderImportLocation, {
+                nameHint: 'buildFlaskURL',
+              });
+            }
+
+            variable = t.variableDeclarator(
+              t.identifier(importName),
+              buildFunc({
+                FUNC: builderFuncId,
+                RULE: t.valueToNode(data),
+                BASE: t.stringLiteral(basePath),
+              })
+            );
+          }
+
           path.replaceWith({
             type: 'VariableDeclaration',
             kind: 'const',
@@ -62,7 +95,7 @@ const flaskURLPlugin = ({types: t, template}, opts = {}) => {
             leadingComments: [
               {
                 type: 'CommentBlock',
-                value: ` flask url builder for '${endpoint}' `,
+                value: ` ${mock ? 'mocked ' : ''}flask url builder for '${endpoint}' `,
               },
             ],
           });

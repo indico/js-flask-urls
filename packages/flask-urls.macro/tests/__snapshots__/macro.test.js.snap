@@ -156,6 +156,22 @@ const noParamsURL = _buildFlaskURL.bind(null, {
 "
 `;
 
+exports[`babel macro works in mock mode: works in mock mode 1`] = `
+"
+import flask from '../src/flask-urls.macro';
+const fooURL = flask\`foo_not_defined\`;
+const barURL = flask\`bar_not_defined\`;
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import { mockFlaskURL as _mockFlaskURL } from \\"flask-urls\\";
+
+const fooURL = _mockFlaskURL.bind(null, \\"foo_not_defined\\");
+
+const barURL = _mockFlaskURL.bind(null, \\"bar_not_defined\\");
+"
+`;
+
 exports[`babel macro works with a custom import name: works with a custom import name 1`] = `
 "
 import kittens from '../src/flask-urls.macro';

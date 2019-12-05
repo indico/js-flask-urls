@@ -35,6 +35,19 @@ pluginTester({
       `,
       snapshot: true,
     },
+    'works in mock mode': {
+      code: `
+        import flask from '../src/flask-urls.macro';
+        const fooURL = flask\`foo_not_defined\`;
+        const barURL = flask\`bar_not_defined\`;
+      `,
+      snapshot: true,
+      pluginOptions: {
+        flaskURLs: {
+          mock: true,
+        },
+      },
+    },
     'rewrites import using a custom builder import location': {
       code: `
         import flask from '../src/flask-urls.macro';

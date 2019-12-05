@@ -131,3 +131,19 @@ const buildFlaskURL = (template, base = '', params = {}, fragment = '', converte
 };
 
 export default buildFlaskURL;
+
+export const mockFlaskURL = (endpoint, params = {}, fragment = '') => {
+  const argstr = Object.entries(params)
+    .map(([k, v]) => `${k}=${v}`)
+    .sort()
+    .join('/');
+  const parts = ['flask://', endpoint];
+  if (argstr) {
+    parts.push('/');
+    parts.push(argstr);
+  }
+  if (fragment) {
+    parts.push('#' + fragment);
+  }
+  return parts.join('');
+};

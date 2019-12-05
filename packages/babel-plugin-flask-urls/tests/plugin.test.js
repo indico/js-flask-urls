@@ -18,12 +18,29 @@ pluginTester({
       code: "import noParams from 'flask-url:no_params';",
       snapshot: true,
     },
+    'rewrites the import in mock mode': {
+      code: "import foo from 'flask-url:foo_not_defined';",
+      snapshot: true,
+      pluginOptions: {
+        mock: true,
+      },
+    },
     'rewrites the imports and adds builder import only once': {
       code: `
         import noParams from 'flask-url:no_params';
         import defaultParam from 'flask-url:default_param';
       `,
       snapshot: true,
+    },
+    'rewrites the import in mock mode and adds builder import only once': {
+      code: `
+        import foo from 'flask-url:not_defined_1';
+        import bar from 'flask-url:not_defined_2';
+      `,
+      snapshot: true,
+      pluginOptions: {
+        mock: true,
+      },
     },
     'rewrites import using a custom builder import location': {
       code: "import noParams from 'flask-url:no_params';",

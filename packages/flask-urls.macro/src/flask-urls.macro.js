@@ -1,9 +1,13 @@
 import {createMacro, MacroError} from 'babel-plugin-macros';
-import {addDefault as addDefaultImport} from '@babel/helper-module-imports';
+import {
+  addDefault as addDefaultImport,
+  addNamed as addNamedImport,
+} from '@babel/helper-module-imports';
 
 const defaultConfig = {
   builder: 'flask-urls',
   urlMap: {},
+  mock: false,
   basePath: '',
 };
 
@@ -19,6 +23,8 @@ const macro = ({babel: {types: t, template}, config: localConfig, references, st
   }
 
   const buildFunc = template.expression('FUNC.bind(null, RULE, BASE)');
+  const buildFuncMock = template.expression('FUNC.bind(null, ENDPOINT)');
+
   let builderFuncId;
   references.default.forEach(({parentPath}) => {
     if (parentPath.type !== 'TaggedTemplateExpression') {
@@ -31,28 +37,45 @@ const macro = ({babel: {types: t, template}, config: localConfig, references, st
     }
 
     const endpoint = quasi.quasis[0].value.cooked;
-    const data = config.urlMap[endpoint];
-    if (!data) {
-      throw new MacroError('flask-url.macro must reference a valid flask endpoint');
-    }
 
-    // generate import or get a reference to it
     if (builderFuncId) {
       builderFuncId = t.cloneDeep(builderFuncId);
+    }
+
+    let replacement;
+    if (config.mock) {
+      if (!builderFuncId) {
+        builderFuncId = addNamedImport(state.file.path, 'mockFlaskURL', config.builder, {
+          nameHint: 'mockFlaskURL',
+        });
+      }
+
+      replacement = buildFuncMock({
+        FUNC: builderFuncId,
+        ENDPOINT: t.stringLiteral(endpoint),
+      });
     } else {
-      builderFuncId = addDefaultImport(state.file.path, config.builder, {
-        nameHint: 'buildFlaskURL',
+      const data = config.urlMap[endpoint];
+      if (!data) {
+        throw new MacroError('flask-url.macro must reference a valid flask endpoint');
+      }
+
+      // generate import
+      if (!builderFuncId) {
+        builderFuncId = addDefaultImport(state.file.path, config.builder, {
+          nameHint: 'buildFlaskURL',
+        });
+      }
+
+      replacement = buildFunc({
+        FUNC: builderFuncId,
+        RULE: t.valueToNode(data),
+        BASE: t.stringLiteral(config.basePath),
       });
     }
 
     // replace the tagged template expression with the builder function
-    parentPath.replaceWith(
-      buildFunc({
-        FUNC: builderFuncId,
-        RULE: t.valueToNode(data),
-        BASE: t.stringLiteral(config.basePath),
-      })
-    );
+    parentPath.replaceWith(replacement);
   });
 };
 
