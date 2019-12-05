@@ -35,7 +35,7 @@
     "collectCoverageFrom": [
       "packages/*/src/**"
     ],
-    "testRegex": "./(packages/[^/]+/)?tests/.+\\.test\\.js$",
+    "testRegex": "./(packages/[^/]+/)?tests/(.+\\.)?test\\.js$",
     "testEnvironment": "node",
     "moduleNameMapper": {
       "^babel-plugin-flask-urls$": "<rootDir>/packages/babel-plugin-flask-urls/src/plugin.js",

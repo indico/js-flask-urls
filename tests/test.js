@@ -11,8 +11,12 @@ const mockESModule = fn => {
   };
 };
 
-const _expectTranspiled = (macro, input, builderImportLocation = 'flask-urls', basePath = '') => {
-  const opts = {urlMap, builderImportLocation, basePath};
+const _expectTranspiled = (macro, input, builder = 'flask-urls', basePath = '') => {
+  const opts = {
+    urlMap,
+    [macro ? 'builder' : 'builderImportLocation']: builder,
+    basePath,
+  };
   const plugins = macro ? [[macrosPlugin, {flaskURLs: opts}]] : [[flaskURLPlugin, opts]];
   const {code} = transform(input, {
     plugins,
@@ -27,7 +31,7 @@ const _expectTranspiled = (macro, input, builderImportLocation = 'flask-urls', b
       return url;
     `
   );
-  const res = f(name => ({[builderImportLocation]: mockESModule(buildFlaskURL)}[name]));
+  const res = f(name => ({[builder]: mockESModule(buildFlaskURL)}[name]));
   return expect(res);
 };
 
