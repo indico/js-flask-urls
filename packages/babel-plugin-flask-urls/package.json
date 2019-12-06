@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-flask-urls",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "Adds support for importing Flask routing rules to generate URLs client-side.",
   "main": "lib/plugin.js",
   "repository": "github:indico/js-flask-urls",
