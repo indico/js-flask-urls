@@ -9,7 +9,7 @@
     "babel-eslint": "^10.0.3",
     "babel-jest": "^24.9.0",
     "babel-plugin-macros": "^2.7.1",
-    "babel-plugin-tester": "^6.5.0",
+    "babel-plugin-tester": "^8.0.1",
     "eslint": "^6.7.2",
     "eslint-config-indico": "^1.2.1",
     "eslint-config-prettier": "^6.7.0",
