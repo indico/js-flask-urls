@@ -21,14 +21,14 @@ matrix:
         - pycodestyle --max-line-length 100 flask-cli/
         - pytest flask-cli/
     - <<: *py
-      name: Python 3.5 - Flask Plugin
-      python: 3.5
-    - <<: *py
       name: Python 3.6 - Flask Plugin
       python: 3.6
     - <<: *py
       name: Python 3.7 - Flask Plugin
       python: 3.7
+    - <<: *py
+      name: Python 3.8 - Flask Plugin
+      python: 3.8
 
 notifications:
   email: false
