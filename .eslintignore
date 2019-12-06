@@ -3,4 +3,5 @@ lib/
 node_modules/
 example/static/dist/
 coverage/
+htmlcov/
 !.*.js
