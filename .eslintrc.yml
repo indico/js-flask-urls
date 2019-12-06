@@ -24,3 +24,15 @@ rules:
   # disable no-unresolved since we don't install the deps
   # of our react example app
   import/no-unresolved: off
+  jest/expect-expect:
+    - warn
+    - assertFunctionNames:
+      - expect
+      - expectURL
+      - expectURLError
+      - expectURLConv
+      - expectURLConvError
+      - expectTranspiledPlugin
+      - expectTranspiledMacro
+      - expectTranspiledPluginMocked
+      - expectTranspiledMacroMocked
