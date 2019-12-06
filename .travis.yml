@@ -4,7 +4,7 @@ matrix:
   include:
     - name: JS packages
       language: node_js
-      node_js: '9'
+      node_js: node  # latest version
       script:
         - npm run build
         - npm run test
