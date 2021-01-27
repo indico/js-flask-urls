@@ -1,6 +1,7 @@
 # Editors
 *.swp
 .idea/
+.vscode/
 
 # Node
 node_modules/
@@ -9,6 +10,7 @@ node_modules/
 # Python
 dist/
 .venv/
+.tox/
 __pycache__/
 *.py[co]
 *.egg-info
