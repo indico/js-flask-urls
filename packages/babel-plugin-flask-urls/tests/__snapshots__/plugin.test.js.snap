@@ -6,35 +6,67 @@ import noParams from 'flask-url:no_params';
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import _buildFlaskURL from 'flask-urls';
+import _buildFlaskURL, {matchFlaskURL as _matchFlaskURL} from 'flask-urls';
 /* flask url builder for 'no_params' */
-const noParams = _buildFlaskURL.bind(
-  null,
+const noParams = Object.assign(
+  _buildFlaskURL.bind(
+    null,
+    {
+      endpoint: 'no_params',
+      rules: [
+        {
+          args: [],
+          converters: {},
+          defaults: null,
+          trace: [
+            {
+              data: '|',
+              isDynamic: false,
+            },
+            {
+              data: '/no',
+              isDynamic: false,
+            },
+            {
+              data: '/',
+              isDynamic: false,
+            },
+          ],
+        },
+      ],
+    },
+    'myapp/'
+  ),
   {
-    endpoint: 'no_params',
-    rules: [
+    match: _matchFlaskURL.bind(
+      null,
       {
-        args: [],
-        converters: {},
-        defaults: null,
-        trace: [
+        endpoint: 'no_params',
+        rules: [
           {
-            data: '|',
-            isDynamic: false,
-          },
-          {
-            data: '/no',
-            isDynamic: false,
-          },
-          {
-            data: '/',
-            isDynamic: false,
+            args: [],
+            converters: {},
+            defaults: null,
+            trace: [
+              {
+                data: '|',
+                isDynamic: false,
+              },
+              {
+                data: '/no',
+                isDynamic: false,
+              },
+              {
+                data: '/',
+                isDynamic: false,
+              },
+            ],
           },
         ],
       },
-    ],
-  },
-  'myapp/'
+      'myapp/'
+    ),
+  }
 );
 
 
@@ -46,35 +78,67 @@ import noParams from 'flask-url:no_params';
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import _buildFlaskURL from 'myapp/flask-urls';
+import _buildFlaskURL, {matchFlaskURL as _matchFlaskURL} from 'myapp/flask-urls';
 /* flask url builder for 'no_params' */
-const noParams = _buildFlaskURL.bind(
-  null,
+const noParams = Object.assign(
+  _buildFlaskURL.bind(
+    null,
+    {
+      endpoint: 'no_params',
+      rules: [
+        {
+          args: [],
+          converters: {},
+          defaults: null,
+          trace: [
+            {
+              data: '|',
+              isDynamic: false,
+            },
+            {
+              data: '/no',
+              isDynamic: false,
+            },
+            {
+              data: '/',
+              isDynamic: false,
+            },
+          ],
+        },
+      ],
+    },
+    ''
+  ),
   {
-    endpoint: 'no_params',
-    rules: [
+    match: _matchFlaskURL.bind(
+      null,
       {
-        args: [],
-        converters: {},
-        defaults: null,
-        trace: [
+        endpoint: 'no_params',
+        rules: [
           {
-            data: '|',
-            isDynamic: false,
-          },
-          {
-            data: '/no',
-            isDynamic: false,
-          },
-          {
-            data: '/',
-            isDynamic: false,
+            args: [],
+            converters: {},
+            defaults: null,
+            trace: [
+              {
+                data: '|',
+                isDynamic: false,
+              },
+              {
+                data: '/no',
+                isDynamic: false,
+              },
+              {
+                data: '/',
+                isDynamic: false,
+              },
+            ],
           },
         ],
       },
-    ],
-  },
-  ''
+      ''
+    ),
+  }
 );
 
 
@@ -87,11 +151,18 @@ import bar from 'flask-url:not_defined_2';
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import {mockFlaskURL as _mockFlaskURL} from 'flask-urls';
+import {
+  mockFlaskURL as _mockFlaskURL,
+  matchMockedFlaskURL as _matchMockedFlaskURL,
+} from 'flask-urls';
 /* mocked flask url builder for 'not_defined_1' */
-const foo = _mockFlaskURL.bind(null, 'not_defined_1');
+const foo = Object.assign(_mockFlaskURL.bind(null, 'not_defined_1'), {
+  match: _matchMockedFlaskURL.bind(null, 'not_defined_1'),
+});
 /* mocked flask url builder for 'not_defined_2' */
-const bar = _mockFlaskURL.bind(null, 'not_defined_2');
+const bar = Object.assign(_mockFlaskURL.bind(null, 'not_defined_2'), {
+  match: _matchMockedFlaskURL.bind(null, 'not_defined_2'),
+});
 
 
 `;
@@ -102,9 +173,14 @@ import foo from 'flask-url:foo_not_defined';
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import {mockFlaskURL as _mockFlaskURL} from 'flask-urls';
+import {
+  mockFlaskURL as _mockFlaskURL,
+  matchMockedFlaskURL as _matchMockedFlaskURL,
+} from 'flask-urls';
 /* mocked flask url builder for 'foo_not_defined' */
-const foo = _mockFlaskURL.bind(null, 'foo_not_defined');
+const foo = Object.assign(_mockFlaskURL.bind(null, 'foo_not_defined'), {
+  match: _matchMockedFlaskURL.bind(null, 'foo_not_defined'),
+});
 
 
 `;
@@ -115,35 +191,67 @@ import noParams from 'flask-url:no_params';
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import _buildFlaskURL from 'flask-urls';
+import _buildFlaskURL, {matchFlaskURL as _matchFlaskURL} from 'flask-urls';
 /* flask url builder for 'no_params' */
-const noParams = _buildFlaskURL.bind(
-  null,
+const noParams = Object.assign(
+  _buildFlaskURL.bind(
+    null,
+    {
+      endpoint: 'no_params',
+      rules: [
+        {
+          args: [],
+          converters: {},
+          defaults: null,
+          trace: [
+            {
+              data: '|',
+              isDynamic: false,
+            },
+            {
+              data: '/no',
+              isDynamic: false,
+            },
+            {
+              data: '/',
+              isDynamic: false,
+            },
+          ],
+        },
+      ],
+    },
+    ''
+  ),
   {
-    endpoint: 'no_params',
-    rules: [
+    match: _matchFlaskURL.bind(
+      null,
       {
-        args: [],
-        converters: {},
-        defaults: null,
-        trace: [
+        endpoint: 'no_params',
+        rules: [
           {
-            data: '|',
-            isDynamic: false,
-          },
-          {
-            data: '/no',
-            isDynamic: false,
-          },
-          {
-            data: '/',
-            isDynamic: false,
+            args: [],
+            converters: {},
+            defaults: null,
+            trace: [
+              {
+                data: '|',
+                isDynamic: false,
+              },
+              {
+                data: '/no',
+                isDynamic: false,
+              },
+              {
+                data: '/',
+                isDynamic: false,
+              },
+            ],
           },
         ],
       },
-    ],
-  },
-  ''
+      ''
+    ),
+  }
 );
 
 
@@ -156,85 +264,170 @@ import defaultParam from 'flask-url:default_param';
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import _buildFlaskURL from 'flask-urls';
+import _buildFlaskURL, {matchFlaskURL as _matchFlaskURL} from 'flask-urls';
 /* flask url builder for 'no_params' */
-const noParams = _buildFlaskURL.bind(
-  null,
+const noParams = Object.assign(
+  _buildFlaskURL.bind(
+    null,
+    {
+      endpoint: 'no_params',
+      rules: [
+        {
+          args: [],
+          converters: {},
+          defaults: null,
+          trace: [
+            {
+              data: '|',
+              isDynamic: false,
+            },
+            {
+              data: '/no',
+              isDynamic: false,
+            },
+            {
+              data: '/',
+              isDynamic: false,
+            },
+          ],
+        },
+      ],
+    },
+    ''
+  ),
   {
-    endpoint: 'no_params',
-    rules: [
+    match: _matchFlaskURL.bind(
+      null,
       {
-        args: [],
-        converters: {},
-        defaults: null,
-        trace: [
+        endpoint: 'no_params',
+        rules: [
           {
-            data: '|',
-            isDynamic: false,
-          },
-          {
-            data: '/no',
-            isDynamic: false,
-          },
-          {
-            data: '/',
-            isDynamic: false,
+            args: [],
+            converters: {},
+            defaults: null,
+            trace: [
+              {
+                data: '|',
+                isDynamic: false,
+              },
+              {
+                data: '/no',
+                isDynamic: false,
+              },
+              {
+                data: '/',
+                isDynamic: false,
+              },
+            ],
           },
         ],
       },
-    ],
-  },
-  ''
+      ''
+    ),
+  }
 );
 /* flask url builder for 'default_param' */
-const defaultParam = _buildFlaskURL.bind(
-  null,
-  {
-    endpoint: 'default_param',
-    rules: [
-      {
-        args: ['x'],
-        converters: {},
-        defaults: {
-          x: 'nope',
+const defaultParam = Object.assign(
+  _buildFlaskURL.bind(
+    null,
+    {
+      endpoint: 'default_param',
+      rules: [
+        {
+          args: ['x'],
+          converters: {},
+          defaults: {
+            x: 'nope',
+          },
+          trace: [
+            {
+              data: '|',
+              isDynamic: false,
+            },
+            {
+              data: '/def',
+              isDynamic: false,
+            },
+            {
+              data: '/',
+              isDynamic: false,
+            },
+          ],
         },
-        trace: [
-          {
-            data: '|',
-            isDynamic: false,
-          },
-          {
-            data: '/def',
-            isDynamic: false,
-          },
-          {
-            data: '/',
-            isDynamic: false,
-          },
-        ],
-      },
+        {
+          args: ['x'],
+          converters: {},
+          defaults: null,
+          trace: [
+            {
+              data: '|',
+              isDynamic: false,
+            },
+            {
+              data: '/def/v/',
+              isDynamic: false,
+            },
+            {
+              data: 'x',
+              isDynamic: true,
+            },
+          ],
+        },
+      ],
+    },
+    ''
+  ),
+  {
+    match: _matchFlaskURL.bind(
+      null,
       {
-        args: ['x'],
-        converters: {},
-        defaults: null,
-        trace: [
+        endpoint: 'default_param',
+        rules: [
           {
-            data: '|',
-            isDynamic: false,
+            args: ['x'],
+            converters: {},
+            defaults: {
+              x: 'nope',
+            },
+            trace: [
+              {
+                data: '|',
+                isDynamic: false,
+              },
+              {
+                data: '/def',
+                isDynamic: false,
+              },
+              {
+                data: '/',
+                isDynamic: false,
+              },
+            ],
           },
           {
-            data: '/def/v/',
-            isDynamic: false,
-          },
-          {
-            data: 'x',
-            isDynamic: true,
+            args: ['x'],
+            converters: {},
+            defaults: null,
+            trace: [
+              {
+                data: '|',
+                isDynamic: false,
+              },
+              {
+                data: '/def/v/',
+                isDynamic: false,
+              },
+              {
+                data: 'x',
+                isDynamic: true,
+              },
+            ],
           },
         ],
       },
-    ],
-  },
-  ''
+      ''
+    ),
+  }
 );
 
 

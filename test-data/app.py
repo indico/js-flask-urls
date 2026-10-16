@@ -56,6 +56,11 @@ def path_param(base, location):
     pass
 
 
+@app.route('/path/<path:location1>/separator/<path:location2>')
+def complex_path_param(location1, location2):
+    pass
+
+
 @app.route('/items/<list:items>')
 def list_param(items):
     pass
