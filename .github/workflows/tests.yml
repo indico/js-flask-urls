@@ -9,14 +9,14 @@ on:
 jobs:
   js:
     name: JS
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-26.04
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
-          node-version: 14.x
+          node-version: 24.x
 
       - name: Install dependencies
         run: npm install
@@ -33,42 +33,27 @@ jobs:
 
   python:
     name: Python ${{ matrix.name }}
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-26.04
 
     strategy:
       fail-fast: false
       matrix:
         include:
-          - {name: Style, python: '3.9', tox: style}
-          - {name: '3.9', python: '3.9', tox: py39}
-          - {name: '3.8', python: '3.8', tox: py38}
-          - {name: '3.7', python: '3.7', tox: py37}
-          - {name: '3.6', python: '3.6', tox: py36}
-          - {name: '2.7', python: '2.7', tox: py27}
+          - {name: Style, python: '3.15', tox: style}
+          - {name: '3.15', python: '3.15', tox: py315}
+          - {name: '3.14', python: '3.14', tox: py314}
+          - {name: '3.13', python: '3.13', tox: py313}
+          - {name: '3.12', python: '3.12', tox: py312}
+          - {name: '3.11', python: '3.11', tox: py311}
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
-      - uses: actions/setup-python@v2
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
           python-version: ${{ matrix.python }}
 
-      - name: Update pip
-        run: |
-          pip install -U wheel
-          pip install -U setuptools
-          python -m pip install -U pip
+      - name: Install uv
+        uses: astral-sh/setup-uv@1c37ad07a6a961277cf70c0d37d6f313000f5884 # v10.3.0
 
-      - name: Get pip cache dir
-        id: pip-cache
-        run: echo "::set-output name=dir::$(pip cache dir)"
-
-      - name: Cache pip
-        uses: actions/cache@v2
-        with:
-          path: ${{ steps.pip-cache.outputs.dir }}
-          key: pip|${{ runner.os }}|${{ matrix.python }}|${{ hashFiles('setup.*') }}
-
-      - run: pip install tox
-
-      - run: tox -e ${{ matrix.tox }}
+      - run: uvx --with tox-uv tox -c flask-cli/ -e ${{ matrix.tox }}

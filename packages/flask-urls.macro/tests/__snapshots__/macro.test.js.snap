@@ -9,7 +9,6 @@ const defaultParam = flask\`default_param\`;
       ↓ ↓ ↓ ↓ ↓ ↓
 
 import _buildFlaskURL from 'flask-urls';
-
 const noParamsURL = _buildFlaskURL.bind(
   null,
   {
@@ -38,7 +37,6 @@ const noParamsURL = _buildFlaskURL.bind(
   },
   ''
 );
-
 const defaultParam = _buildFlaskURL.bind(
   null,
   {
@@ -100,7 +98,6 @@ const noParamsURL = flask\`no_params\`;
       ↓ ↓ ↓ ↓ ↓ ↓
 
 import _buildFlaskURL from 'flask-urls';
-
 const noParamsURL = _buildFlaskURL.bind(
   null,
   {
@@ -141,7 +138,6 @@ const noParamsURL = flask\`no_params\`;
       ↓ ↓ ↓ ↓ ↓ ↓
 
 import _buildFlaskURL from 'flask-urls';
-
 const noParamsURL = _buildFlaskURL.bind(
   null,
   {
@@ -182,7 +178,6 @@ const noParamsURL = flask\`no_params\`;
       ↓ ↓ ↓ ↓ ↓ ↓
 
 import _buildFlaskURL from 'myapp/flask-urls';
-
 const noParamsURL = _buildFlaskURL.bind(
   null,
   {
@@ -224,9 +219,7 @@ const barURL = flask\`bar_not_defined\`;
       ↓ ↓ ↓ ↓ ↓ ↓
 
 import {mockFlaskURL as _mockFlaskURL} from 'flask-urls';
-
 const fooURL = _mockFlaskURL.bind(null, 'foo_not_defined');
-
 const barURL = _mockFlaskURL.bind(null, 'bar_not_defined');
 
 
@@ -240,7 +233,6 @@ const noParamsURL = kittens\`no_params\`;
       ↓ ↓ ↓ ↓ ↓ ↓
 
 import _buildFlaskURL from 'flask-urls';
-
 const noParamsURL = _buildFlaskURL.bind(
   null,
   {

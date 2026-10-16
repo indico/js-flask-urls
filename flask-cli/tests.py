@@ -49,88 +49,154 @@ def app_fixture():
     return app
 
 
-URL_MAP = {'default_param': {'endpoint': 'default_param',
-                             'rules': [{'args': ['x'],
-                                        'converters': {},
-                                        'defaults': {'x': 'nope'},
-                                        'trace': [{'data': '|', 'isDynamic': False},
-                                                  {'data': '/', 'isDynamic': False},
-                                                  {'data': 'def', 'isDynamic': False},
-                                                  {'data': '/', 'isDynamic': False}]},
-                                       {'args': ['x'],
-                                        'converters': {},
-                                        'defaults': None,
-                                        'trace': [{'data': '|', 'isDynamic': False},
-                                                  {'data': '/', 'isDynamic': False},
-                                                  {'data': 'def', 'isDynamic': False},
-                                                  {'data': '/', 'isDynamic': False},
-                                                  {'data': 'v', 'isDynamic': False},
-                                                  {'data': '/', 'isDynamic': False},
-                                                  {'data': 'x', 'isDynamic': True}]}]},
-           'int_param': {'endpoint': 'int_param',
-                         'rules': [{'args': ['n'],
-                                    'converters': {'n': 'IntegerConverter'},
-                                    'defaults': None,
-                                    'trace': [{'data': '|', 'isDynamic': False},
-                                              {'data': '/', 'isDynamic': False},
-                                              {'data': 'int', 'isDynamic': False},
-                                              {'data': '/', 'isDynamic': False},
-                                              {'data': 'n', 'isDynamic': True}]}]},
-           'list_param': {'endpoint': 'list_param',
-                          'rules': [{'args': ['items'],
-                                     'converters': {'items': 'ListConverter'},
-                                     'defaults': None,
-                                     'trace': [{'data': '|', 'isDynamic': False},
-                                               {'data': '/', 'isDynamic': False},
-                                               {'data': 'items', 'isDynamic': False},
-                                               {'data': '/', 'isDynamic': False},
-                                               {'data': 'items', 'isDynamic': True}]}]},
-           'no_params': {'endpoint': 'no_params',
-                         'rules': [{'args': [],
-                                    'converters': {},
-                                    'defaults': None,
-                                    'trace': [{'data': '|', 'isDynamic': False},
-                                              {'data': '/', 'isDynamic': False},
-                                              {'data': 'no', 'isDynamic': False},
-                                              {'data': '/', 'isDynamic': False}]}]},
-           'optional_param': {'endpoint': 'optional_param',
-                              'rules': [{'args': ['x'],
-                                         'converters': {},
-                                         'defaults': None,
-                                         'trace': [{'data': '|', 'isDynamic': False},
-                                                   {'data': '/', 'isDynamic': False},
-                                                   {'data': 'opt', 'isDynamic': False},
-                                                   {'data': '/', 'isDynamic': False},
-                                                   {'data': 'v', 'isDynamic': False},
-                                                   {'data': '/', 'isDynamic': False},
-                                                   {'data': 'x', 'isDynamic': True}]},
-                                        {'args': [],
-                                         'converters': {},
-                                         'defaults': None,
-                                         'trace': [{'data': '|', 'isDynamic': False},
-                                                   {'data': '/', 'isDynamic': False},
-                                                   {'data': 'opt', 'isDynamic': False},
-                                                   {'data': '/', 'isDynamic': False}]}]},
-           'param': {'endpoint': 'param',
-                     'rules': [{'args': ['x'],
-                                'converters': {},
-                                'defaults': None,
-                                'trace': [{'data': '|', 'isDynamic': False},
-                                          {'data': '/', 'isDynamic': False},
-                                          {'data': 'p', 'isDynamic': False},
-                                          {'data': '/', 'isDynamic': False},
-                                          {'data': 'x', 'isDynamic': True}]}]},
-           'path_param': {'endpoint': 'path_param',
-                          'rules': [{'args': ['base', 'location'],
-                                     'converters': {'location': 'PathConverter'},
-                                     'defaults': None,
-                                     'trace': [{'data': '|', 'isDynamic': False},
-                                               {'data': '/', 'isDynamic': False},
-                                               {'data': 'file', 'isDynamic': False},
-                                               {'data': '/', 'isDynamic': False},
-                                               {'data': 'base', 'isDynamic': True},
-                                               {'data': '/', 'isDynamic': False},
-                                               {'data': 'location', 'isDynamic': True}]}]}}
+URL_MAP = {
+    'default_param': {
+        'endpoint': 'default_param',
+        'rules': [
+            {
+                'args': ['x'],
+                'converters': {},
+                'defaults': {'x': 'nope'},
+                'trace': [
+                    {'data': '|', 'isDynamic': False},
+                    {'data': '/', 'isDynamic': False},
+                    {'data': 'def', 'isDynamic': False},
+                    {'data': '/', 'isDynamic': False},
+                ],
+            },
+            {
+                'args': ['x'],
+                'converters': {},
+                'defaults': None,
+                'trace': [
+                    {'data': '|', 'isDynamic': False},
+                    {'data': '/', 'isDynamic': False},
+                    {'data': 'def', 'isDynamic': False},
+                    {'data': '/', 'isDynamic': False},
+                    {'data': 'v', 'isDynamic': False},
+                    {'data': '/', 'isDynamic': False},
+                    {'data': 'x', 'isDynamic': True},
+                ],
+            },
+        ],
+    },
+    'int_param': {
+        'endpoint': 'int_param',
+        'rules': [
+            {
+                'args': ['n'],
+                'converters': {'n': 'IntegerConverter'},
+                'defaults': None,
+                'trace': [
+                    {'data': '|', 'isDynamic': False},
+                    {'data': '/', 'isDynamic': False},
+                    {'data': 'int', 'isDynamic': False},
+                    {'data': '/', 'isDynamic': False},
+                    {'data': 'n', 'isDynamic': True},
+                ],
+            }
+        ],
+    },
+    'list_param': {
+        'endpoint': 'list_param',
+        'rules': [
+            {
+                'args': ['items'],
+                'converters': {'items': 'ListConverter'},
+                'defaults': None,
+                'trace': [
+                    {'data': '|', 'isDynamic': False},
+                    {'data': '/', 'isDynamic': False},
+                    {'data': 'items', 'isDynamic': False},
+                    {'data': '/', 'isDynamic': False},
+                    {'data': 'items', 'isDynamic': True},
+                ],
+            }
+        ],
+    },
+    'no_params': {
+        'endpoint': 'no_params',
+        'rules': [
+            {
+                'args': [],
+                'converters': {},
+                'defaults': None,
+                'trace': [
+                    {'data': '|', 'isDynamic': False},
+                    {'data': '/', 'isDynamic': False},
+                    {'data': 'no', 'isDynamic': False},
+                    {'data': '/', 'isDynamic': False},
+                ],
+            }
+        ],
+    },
+    'optional_param': {
+        'endpoint': 'optional_param',
+        'rules': [
+            {
+                'args': ['x'],
+                'converters': {},
+                'defaults': None,
+                'trace': [
+                    {'data': '|', 'isDynamic': False},
+                    {'data': '/', 'isDynamic': False},
+                    {'data': 'opt', 'isDynamic': False},
+                    {'data': '/', 'isDynamic': False},
+                    {'data': 'v', 'isDynamic': False},
+                    {'data': '/', 'isDynamic': False},
+                    {'data': 'x', 'isDynamic': True},
+                ],
+            },
+            {
+                'args': [],
+                'converters': {},
+                'defaults': None,
+                'trace': [
+                    {'data': '|', 'isDynamic': False},
+                    {'data': '/', 'isDynamic': False},
+                    {'data': 'opt', 'isDynamic': False},
+                    {'data': '/', 'isDynamic': False},
+                ],
+            },
+        ],
+    },
+    'param': {
+        'endpoint': 'param',
+        'rules': [
+            {
+                'args': ['x'],
+                'converters': {},
+                'defaults': None,
+                'trace': [
+                    {'data': '|', 'isDynamic': False},
+                    {'data': '/', 'isDynamic': False},
+                    {'data': 'p', 'isDynamic': False},
+                    {'data': '/', 'isDynamic': False},
+                    {'data': 'x', 'isDynamic': True},
+                ],
+            }
+        ],
+    },
+    'path_param': {
+        'endpoint': 'path_param',
+        'rules': [
+            {
+                'args': ['base', 'location'],
+                'converters': {'location': 'PathConverter'},
+                'defaults': None,
+                'trace': [
+                    {'data': '|', 'isDynamic': False},
+                    {'data': '/', 'isDynamic': False},
+                    {'data': 'file', 'isDynamic': False},
+                    {'data': '/', 'isDynamic': False},
+                    {'data': 'base', 'isDynamic': True},
+                    {'data': '/', 'isDynamic': False},
+                    {'data': 'location', 'isDynamic': True},
+                ],
+            }
+        ],
+    },
+}
 
 
 def test_dump_url_rule(app):
@@ -143,7 +209,7 @@ def test_dump_url_map(app):
 
 @pytest.mark.parametrize('pretty', (True, False))
 def test_cli(app, pretty):
-    obj = ScriptInfo(create_app=lambda info: app)
+    obj = ScriptInfo(create_app=lambda: app)
     args = ['--pretty'] if pretty else None
     result = CliRunner().invoke(cli, args=args, obj=obj)
     assert result.exit_code == 0
@@ -151,10 +217,12 @@ def test_cli(app, pretty):
 
 
 def _dumps(data, pretty):
-    pretty_opts = {
-        'indent': 2,
-        'separators': (',', ': '),
-    } if pretty else {
-        'separators': (',', ':')
-    }
+    pretty_opts = (
+        {
+            'indent': 2,
+            'separators': (',', ': '),
+        }
+        if pretty
+        else {'separators': (',', ':')}
+    )
     return json.dumps(data, sort_keys=True, **pretty_opts) + '\n'

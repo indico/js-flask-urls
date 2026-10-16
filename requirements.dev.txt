@@ -1,5 +1,0 @@
-flake8
-isort
-pytest
-pytest-cov
-tox
