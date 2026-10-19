@@ -1,0 +1,41 @@
+[project]
+name = 'flask-url-map-serializer'
+version = '0.0.1'
+description = 'Dumps the URL map of a flask app to a JSON file'
+readme = 'README.md'
+license = 'MIT'
+authors = [{ name = 'Indico Team', email = 'indico-team@cern.ch' }]
+requires-python = '~=3.11'
+dependencies = ['flask']
+
+[project.optional-dependencies]
+dev = ['ruff', 'pytest', 'pytest-cov', 'tox', 'tox-uv']
+
+[project.urls]
+GitHub = 'https://github.com/indico/babel-plugin-flask-urls'
+
+[project.entry-points.'flask.commands']
+url_map_to_json = 'flask_url_map_serializer:cli'
+
+[build-system]
+requires = ['hatchling==1.32.4']
+build-backend = 'hatchling.build'
+
+[tool.hatch.build]
+exclude = ['tests.py', '.gitignore']
+
+[tool.tox]
+requires = ['tox']
+env_list = ['py311', 'py312', 'py313', 'py314', 'py315', 'style']
+skip_missing_interpreters = true
+
+[tool.tox.env_run_base]
+extras = ['dev']
+commands = [['pytest']]
+
+[tool.tox.env.style]
+deps = ['ruff']
+commands = [
+    ['ruff', 'check', '--output-format', 'github', '.'],
+    ['ruff', 'format', '--check', '--output-format', 'github', '.'],
+]
