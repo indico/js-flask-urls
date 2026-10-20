@@ -1,4 +1,58 @@
 {
+  "complex_path_param": {
+    "endpoint": "complex_path_param",
+    "rules": [
+      {
+        "args": [
+          "location1",
+          "location2"
+        ],
+        "converters": {
+          "location1": "PathConverter",
+          "location2": "PathConverter"
+        },
+        "defaults": null,
+        "trace": [
+          {
+            "data": "|",
+            "isDynamic": false
+          },
+          {
+            "data": "/",
+            "isDynamic": false
+          },
+          {
+            "data": "path",
+            "isDynamic": false
+          },
+          {
+            "data": "/",
+            "isDynamic": false
+          },
+          {
+            "data": "location1",
+            "isDynamic": true
+          },
+          {
+            "data": "/",
+            "isDynamic": false
+          },
+          {
+            "data": "separator",
+            "isDynamic": false
+          },
+          {
+            "data": "/",
+            "isDynamic": false
+          },
+          {
+            "data": "location2",
+            "isDynamic": true
+          }
+        ]
+      }
+    ]
+  },
   "default_param": {
     "endpoint": "default_param",
     "rules": [

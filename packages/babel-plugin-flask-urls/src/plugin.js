@@ -4,8 +4,12 @@ import {
 } from '@babel/helper-module-imports';
 
 const flaskURLPlugin = ({types: t, template}, opts = {}) => {
-  const buildFunc = template.expression('FUNC.bind(null, RULE, BASE)');
-  const buildFuncMock = template.expression('FUNC.bind(null, ENDPOINT)');
+  const buildFunc = template.expression(
+    'Object.assign(BUILDFUNC.bind(null, RULE, BASE), {match: MATCHFUNC.bind(null, RULE, BASE)})'
+  );
+  const buildFuncMock = template.expression(
+    'Object.assign(BUILDFUNC.bind(null, ENDPOINT), {match: MATCHFUNC.bind(null, ENDPOINT)})'
+  );
   const importPrefix = opts.importPrefix || 'flask-url';
   const builderImportLocation = opts.builderImportLocation || 'flask-urls';
   const urlMap = opts.urlMap || {};
@@ -42,6 +46,11 @@ const flaskURLPlugin = ({types: t, template}, opts = {}) => {
             builderFuncId = t.cloneDeep(builderFuncId);
           }
 
+          let matchFuncId = this.matchFuncId;
+          if (matchFuncId) {
+            matchFuncId = t.cloneDeep(matchFuncId);
+          }
+
           let variable;
           if (mock) {
             if (!builderFuncId) {
@@ -54,11 +63,22 @@ const flaskURLPlugin = ({types: t, template}, opts = {}) => {
                 }
               );
             }
+            if (!matchFuncId) {
+              matchFuncId = this.matchFuncId = addNamedImport(
+                path,
+                'matchMockedFlaskURL',
+                builderImportLocation,
+                {
+                  nameHint: 'matchMockedFlaskURL',
+                }
+              );
+            }
 
             variable = t.variableDeclarator(
               t.identifier(importName),
               buildFuncMock({
-                FUNC: builderFuncId,
+                BUILDFUNC: builderFuncId,
+                MATCHFUNC: matchFuncId,
                 ENDPOINT: t.stringLiteral(endpoint),
               })
             );
@@ -77,11 +97,22 @@ const flaskURLPlugin = ({types: t, template}, opts = {}) => {
                 nameHint: 'buildFlaskURL',
               });
             }
+            if (!matchFuncId) {
+              matchFuncId = this.matchFuncId = addNamedImport(
+                path,
+                'matchFlaskURL',
+                builderImportLocation,
+                {
+                  nameHint: 'matchFlaskURL',
+                }
+              );
+            }
 
             variable = t.variableDeclarator(
               t.identifier(importName),
               buildFunc({
-                FUNC: builderFuncId,
+                BUILDFUNC: builderFuncId,
+                MATCHFUNC: matchFuncId,
                 RULE: t.valueToNode(data),
                 BASE: t.stringLiteral(basePath),
               })

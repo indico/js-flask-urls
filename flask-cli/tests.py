@@ -42,6 +42,10 @@ def app_fixture():
     def path_param(base, location):
         pass  # pragma: no coverage
 
+    @app.route('/path/<path:location1>/separator/<path:location2>')
+    def complex_path_param(location1, location2):
+        pass  # pragma: no coverage
+
     @app.route('/items/<list:items>')
     def list_param(items):
         pass  # pragma: no coverage
@@ -192,6 +196,27 @@ URL_MAP = {
                     {'data': 'base', 'isDynamic': True},
                     {'data': '/', 'isDynamic': False},
                     {'data': 'location', 'isDynamic': True},
+                ],
+            }
+        ],
+    },
+    'complex_path_param': {
+        'endpoint': 'complex_path_param',
+        'rules': [
+            {
+                'args': ['location1', 'location2'],
+                'converters': {'location1': 'PathConverter', 'location2': 'PathConverter'},
+                'defaults': None,
+                'trace': [
+                    {'data': '|', 'isDynamic': False},
+                    {'data': '/', 'isDynamic': False},
+                    {'data': 'path', 'isDynamic': False},
+                    {'data': '/', 'isDynamic': False},
+                    {'data': 'location1', 'isDynamic': True},
+                    {'data': '/', 'isDynamic': False},
+                    {'data': 'separator', 'isDynamic': False},
+                    {'data': '/', 'isDynamic': False},
+                    {'data': 'location2', 'isDynamic': True},
                 ],
             }
         ],

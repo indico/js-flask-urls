@@ -22,10 +22,14 @@ const macro = ({babel: {types: t, template}, config: localConfig, references, st
     throw new MacroError('flask-urls.macro is imported but not used');
   }
 
-  const buildFunc = template.expression('FUNC.bind(null, RULE, BASE)');
-  const buildFuncMock = template.expression('FUNC.bind(null, ENDPOINT)');
+  const buildFunc = template.expression(
+    'Object.assign(BUILDFUNC.bind(null, RULE, BASE), {match: MATCHFUNC.bind(null, RULE, BASE)})'
+  );
+  const buildFuncMock = template.expression(
+    'Object.assign(BUILDFUNC.bind(null, ENDPOINT), {match: MATCHFUNC.bind(null, ENDPOINT)})'
+  );
 
-  let builderFuncId;
+  let builderFuncId, matchFuncId;
   references.default.forEach(({parentPath}) => {
     if (parentPath.type !== 'TaggedTemplateExpression') {
       throw new MacroError('flask-urls.macro only supports tagged template expressions');
@@ -41,6 +45,9 @@ const macro = ({babel: {types: t, template}, config: localConfig, references, st
     if (builderFuncId) {
       builderFuncId = t.cloneDeep(builderFuncId);
     }
+    if (matchFuncId) {
+      matchFuncId = t.cloneDeep(matchFuncId);
+    }
 
     let replacement;
     if (config.mock) {
@@ -49,9 +56,15 @@ const macro = ({babel: {types: t, template}, config: localConfig, references, st
           nameHint: 'mockFlaskURL',
         });
       }
+      if (!matchFuncId) {
+        matchFuncId = addNamedImport(state.file.path, 'matchMockedFlaskURL', config.builder, {
+          nameHint: 'matchMockedFlaskURL',
+        });
+      }
 
       replacement = buildFuncMock({
-        FUNC: builderFuncId,
+        BUILDFUNC: builderFuncId,
+        MATCHFUNC: matchFuncId,
         ENDPOINT: t.stringLiteral(endpoint),
       });
     } else {
@@ -60,15 +73,21 @@ const macro = ({babel: {types: t, template}, config: localConfig, references, st
         throw new MacroError('flask-url.macro must reference a valid flask endpoint');
       }
 
-      // generate import
+      // generate imports
       if (!builderFuncId) {
         builderFuncId = addDefaultImport(state.file.path, config.builder, {
           nameHint: 'buildFlaskURL',
         });
       }
+      if (!matchFuncId) {
+        matchFuncId = addNamedImport(state.file.path, 'matchFlaskURL', config.builder, {
+          nameHint: 'matchFlaskURL',
+        });
+      }
 
       replacement = buildFunc({
-        FUNC: builderFuncId,
+        BUILDFUNC: builderFuncId,
+        MATCHFUNC: matchFuncId,
         RULE: t.valueToNode(data),
         BASE: t.stringLiteral(config.basePath),
       });
